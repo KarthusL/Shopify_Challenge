@@ -8,6 +8,7 @@ from storage_app.database import create_sample_data
 
 
 
+
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///inventory.db'
