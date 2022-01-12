@@ -4,19 +4,18 @@ from sqlalchemy import text, engine, create_engine
 
 from storage_app import db, app
 from storage_app.database import create_sample_data
+
 # from storage_app.models.inventory import Inventory
 
 
-
-
 app = Flask(__name__)
-
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///inventory.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = 'Get the offer!'
 engine = create_engine('sqlite:///Inventory.db')
 db = SQLAlchemy(app)
 db.init_app(app)
+
 
 class Inventory(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -34,6 +33,7 @@ class Inventory(db.Model):
 
 
 @app.route('/')
+@app.route('/index', methods=['POST', 'GET'])
 def index():
     items = Inventory.query.order_by(Inventory.id).all()
     return render_template('index.html', items=items)
