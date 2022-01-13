@@ -1,13 +1,12 @@
 from flask import flash
-from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import func
 
-from .models.inventory import Inventory
-# from .routes import Inventory
-from storage_app import db
+from inventory_app import db
+from inventory_app.models import Inventory
 
 
 def create_sample_data():
+    row = 0
     try:
         row = db.session.query(func.max(Inventory.id)).first()
     except:

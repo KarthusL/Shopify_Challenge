@@ -1,4 +1,5 @@
-from storage_app import db
+from inventory_app import db
+
 
 class Inventory(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -13,4 +14,3 @@ class Inventory(db.Model):
         self.location = location
         # self.date_created = date_created
         self.amount = amount
-

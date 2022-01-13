@@ -1,49 +1,22 @@
-from flask import redirect, render_template, request, flash, Flask
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import text, engine, create_engine
+from flask import redirect, render_template, request, flash
+from sqlalchemy import text, func
 
-from storage_app import db, app
-from storage_app.database import create_sample_data
-
-# from storage_app.models.inventory import Inventory
-
-
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///inventory.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SECRET_KEY'] = 'Get the offer!'
-engine = create_engine('sqlite:///Inventory.db')
-db = SQLAlchemy(app)
-db.init_app(app)
-
-
-class Inventory(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50), nullable=False)
-    location = db.Column(db.String(50), nullable=False)
-    # Date_created = db.Column(db.DateTime, default=datetime.utcnow)
-    amount = db.Column(db.Integer, nullable=False, default=0)
-
-    def __init__(self, id, name, location, amount):
-        self.id = id
-        self.name = name
-        self.location = location
-        # self.date_created = date_created
-        self.amount = amount
+from inventory_app import app, db
+from inventory_app.database_function import create_sample_data
+from inventory_app.models import Inventory
 
 
 @app.route('/')
 @app.route('/index', methods=['POST', 'GET'])
 def index():
-    items = Inventory.query.order_by(Inventory.id).all()
+    items = db.session.query(Inventory).order_by(Inventory.id).all()
     return render_template('index.html', items=items)
 
 
 @app.route('/add', methods=['POST', 'GET'])
 def add():
     if request.method == 'POST':
-        add_data(request.form['add-search-id'], request.form['add-search-name'],
-                 request.form['add-search-location'],
+        add_data(request.form['add-search-id'], request.form['add-search-name'], request.form['add-search-location'],
                  request.form['add-search-amount'])
     return redirect('/')
 
@@ -90,8 +63,7 @@ def update():
 def search():
     if request.method == 'POST':
         searched_items = search_items(request.form['add-search-id'], request.form['add-search-name'],
-                                      request.form['add-search-location'],
-                                      request.form['add-search-amount'])
+                                      request.form['add-search-location'], request.form['add-search-amount'])
         return render_template('index.html', items=searched_items)
     return render_template('/')
 
@@ -100,15 +72,12 @@ def search():
 def search_items(id, name, location, amount):
     searched_items = []
     stat = text(
-        "SELECT * FROM Inventory where (id=:id or :id = '') and (name=:name or :name = '') and (location=:location or "
+        "SELECT * FROM inventory where (id= :id or :id = '') and (name=:name or :name = '') and (location=:location or "
         ":location = '') and (amount=:amount or :amount = '')")
-    # try:
-    conn = engine.connect()
-    # except:
-    #     flash('There was a problem when connecting to database')
 
     try:
-        searched_items = conn.execute(stat, {'id': id, 'name': name, 'location': location, 'amount': amount}).fetchall()
+        searched_items = db.engine.execute(stat,
+                                           {'id': id, 'name': name, 'location': location, 'amount': amount}).fetchall()
     except:
         flash('There was a problem when fetching the result')
         redirect('/')
@@ -128,6 +97,4 @@ def message_database():
     return render_template('database.html', all_messages=all_messages)
 
 
-if __name__ == '__main__':
-    db.create_all()
-    app.run(debug=True)
+
