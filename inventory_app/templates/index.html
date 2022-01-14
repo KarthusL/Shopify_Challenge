@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
-<head>
+
+  <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -15,108 +16,106 @@
     <title>Table #1</title>
 
 
-</head>
-<body>
+  </head>
+
+  <body>
 
 
-<div class="content">
-    <div class="container">
+    <div class="content">
+      <div class="container">
         <h2 class="mb-auto" style='padding-bottom: 20px'>Shopify Backend Developer Intern
-            Challenge - Summer 2022</h2>
+          Challenge - Summer 2022</h2>
         <div class=" table-responsive">
-            {% with messages = get_flashed_messages() %}
-            {% if messages %}
-            {% for message in messages %}
-            <h3>{{ message }}</h3>
-            {% endfor %}
-            {% endif %}
-            {% endwith%}
-            <form class="row gx-3 gy-2 align-items-center">
-                <div class="col-sm-2">
-                    <label class="visually-hidden" for="specificSizeInputName">ID</label>
-                    <input type="text" name='add-search-id' class="form-control" id="specificSizeID" placeholder="ID">
-                </div>
-                <div class="col-sm-2">
-                    <label class="visually-hidden" for="specificSizeInputName">Name</label>
-                    <input type="text" name='add-search-name' class="form-control" id="specificSizeInputName"
-                           placeholder="Name">
-                </div>
-                <div class="col-sm-2">
-                    <label class="visually-hidden" for="specificSizeInputName">Location</label>
-                    <input type="text" name='add-search-location' class="form-control" id="specificSizeLocation"
-                           placeholder="Location">
-                </div>
-                <div class="col-sm-2">
-                    <label class="visually-hidden" for="specificSizeInputName">Amount</label>
-                    <input type="text" name='add-search-amount' class="form-control" id="specificSizeAmount"
-                           placeholder="Amount">
-                </div>
+          {% with messages = get_flashed_messages() %}
+          {% if messages %}
+          {% for message in messages %}
+          <h3>{{ message }}</h3>
+          {% endfor %}
+          {% endif %}
+          {% endwith%}
+          <form class="row gx-3 gy-2 align-items-center">
+            <div class="col-sm-2">
+              <label class="visually-hidden" for="specificSizeInputName">ID</label>
+              <input type="text" name='add-search-id' class="form-control" id="specificSizeID" placeholder="ID">
+            </div>
+            <div class="col-sm-2">
+              <label class="visually-hidden" for="specificSizeInputName">Name</label>
+              <input type="text" name='add-search-name' class="form-control" id="specificSizeInputName" placeholder="Name">
+            </div>
+            <div class="col-sm-2">
+              <label class="visually-hidden" for="specificSizeInputName">Location</label>
+              <input type="text" name='add-search-location' class="form-control" id="specificSizeLocation" placeholder="Location">
+            </div>
+            <div class="col-sm-2">
+              <label class="visually-hidden" for="specificSizeInputName">Amount</label>
+              <input type="text" name='add-search-amount' class="form-control" id="specificSizeAmount" placeholder="Amount">
+            </div>
 
-                <div class="col-auto">
-                    <button type="submit" class="btn btn-primary" formaction="/add" formmethod="post">Add</button>
-                    <button type="submit" class="btn btn-success" id="search" formaction="/search" formmethod="post">
-                        Search
-                    </button>
+            <div class="col-auto">
+              <button type="submit" class="btn btn-primary" formaction="/add" formmethod="post">Add</button>
+              <button type="submit" class="btn btn-success" id="search" formaction="/search" formmethod="post">
+                Search
+              </button>
 
-                </div>
-            </form>
+            </div>
+          </form>
 
 
-            <form>
+          <form>
+            <button type="submit" class="btn btn-danger" id="delete_selected" formaction="/delete" formmethod="post">Delete
+            </button>
+            <button type="submit" class="btn btn-warning" id="sample_record" formaction="/sample" formmethod="post">
+              Add 5 pieces of Sample Data
+            </button>
+            <button type="submit" class="btn btn-info" formaction="/index" formmethod="post">Show all items</button>
+            <table class="table custom-table">
+              <thead>
+                <tr>
+                  <th scope="col">
+                    <label class="control control--checkbox">
+                      <input type="checkbox" class="js-check-all" name="checkbox" />
+                      <div class="control__indicator"></div>
+                    </label>
+                  </th>
+                  <th scope="col">ID</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Location</th>
+                  <th scope="col">Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for item in items %}
+                <tr>
+                  <th scope="row">
+                    <label class="control control--checkbox">
+                      <input type="checkbox" name="single_checkbox" value="{{item.id}}">
+                      <div class="control__indicator"></div>
+                    </label>
+                  </th>
+                  <td class="" id={{item.id}}>{{item.id}}</td>
+                  <td class="editable_textarea" id="{{item.id}} name">{{item.name}}</td>
+                  <td class="editable_textarea" id="{{item.id}} location">{{item.location}}</td>
+                  <td class="editable_textarea" id="{{item.id}} amount">{{item.amount}}</td>
+                </tr>
+                {% endfor %}
 
-                <button type="submit" class="btn btn-danger" id="delete_selected" formaction="/delete"
-                        formmethod="post">Delete
-                </button>
-                <button type="submit" class="btn btn-warning" id="sample_record" formaction="/sample" formmethod="post">
-                    Add 5 pieces of Sample Data
-                </button>
-                <button type="submit" class="btn btn-info" formaction="/index" formmethod="post">Show all items</button>
-                <table class="table custom-table">
-                    <thead>
-                    <tr>
-                        <th scope="col">
-                            <label class="control control--checkbox">
-                                <input type="checkbox" class="js-check-all" name="checkbox"/>
-                                <div class="control__indicator"></div>
-                            </label>
-                        </th>
-                        <th scope="col">ID</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Location</th>
-                        <th scope="col">Amount</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for item in items %}
-                    <tr>
-                        <th scope="row">
-                            <label class="control control--checkbox">
-                                <input type="checkbox" name="single_checkbox" value="{{item.id}}">
-                                <div class="control__indicator"></div>
-                            </label>
-                        </th>
-                        <td class="" id={{item.id}}>{{item.id}}</td>
-                        <td class="editable_textarea" id="{{item.id}} name">{{item.name}}</td>
-                        <td class="editable_textarea" id="{{item.id}} location">{{item.location}}</td>
-                        <td class="editable_textarea" id="{{item.id}} amount">{{item.amount}}</td>
-                    </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-            </form>
+
+              </tbody>
+            </table>
+
+          </form>
         </div>
+      </div>
     </div>
-</div>
 
 
-<script src="../static/js/jquery-3.3.1.min.js"></script>
-<script src="../static/js/popper.min.js"></script>
-<script src="../static/js/bootstrap.min.js"></script>
-<script src="../static/js/main.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jeditable.js/2.0.19/jquery.jeditable.min.js"
-        integrity="sha512-Jn+modod+CgT0sdSdiL5Zr74JeTDTR2DGzeSRG1oUVnZjZFnkdSPOFUiwAr/St/lIvYEyBaZ6F46vJE4fbHg6A=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="../static/js/jquery-3.3.1.min.js"></script>
+    <script src="../static/js/popper.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <script src="../static/js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jeditable.js/2.0.19/jquery.jeditable.min.js" integrity="sha512-Jn+modod+CgT0sdSdiL5Zr74JeTDTR2DGzeSRG1oUVnZjZFnkdSPOFUiwAr/St/lIvYEyBaZ6F46vJE4fbHg6A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
-</body>
+  </body>
+
 </html>

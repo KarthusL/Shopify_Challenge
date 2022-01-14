@@ -19,6 +19,7 @@ def create_sample_data():
         index += 1
         item = Inventory(index, 'Macbook', 'NY', 1000)
         db.session.add(item)
-        db.session.commit()
+
         if index % 5 == 0:
             break
+    db.session.commit()
