@@ -69,8 +69,7 @@ def search():
 def search_items(id, name, location, amount):
     searched_items = []
     stat = text(
-        "SELECT * FROM inventory where (id= :id or :id = '') and (name=:name or :name = '') and (location=:location or "
-        ":location = '') and (amount=:amount or :amount = '')")
+        "SELECT * FROM inventory WHERE (id=:id OR :id = '') AND (name=:name OR :name = '') and (location=:location OR :location = '') AND (amount=:amount OR :amount = '')")
     try:
         searched_items = db.engine.execute(stat,
                                            {'id': id, 'name': name, 'location': location, 'amount': amount}).fetchall()
