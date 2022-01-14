@@ -2,7 +2,7 @@ from flask import flash
 from sqlalchemy import func
 
 from inventory_app import db
-from inventory_app.models import Inventory
+from inventory_app.models.models import Inventory
 
 
 def create_sample_data():

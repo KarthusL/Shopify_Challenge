@@ -3,7 +3,7 @@ from sqlalchemy import text
 
 from inventory_app import db
 from inventory_app.inventory_functions.utils import create_sample_data
-from inventory_app.models import Inventory
+from inventory_app.models.models import Inventory
 
 inventory_functions = Blueprint('inventory_functions', __name__)
 
@@ -18,8 +18,11 @@ def add():
 
 # helper function for add()
 def add_data(id, name, location, amount):
-    inventory = Inventory(id, name, location, amount)
+    if all(v is not None for v in [id, name, location, amount]):
+        flash('All information is needed to create an item')
+        return redirect('/')
     try:
+        inventory = Inventory(id, name, location, amount)
         db.session.add(inventory)
         db.session.commit()
         return redirect('/')
@@ -29,8 +32,6 @@ def add_data(id, name, location, amount):
 
 @inventory_functions.route('/delete', methods=['GET', 'POST'])
 def delete():
-    print('delete')
-
     for id in request.form.getlist('single_checkbox'):
         item_to_delete = db.session.query(Inventory).filter(Inventory.id == id).first()
         try:
@@ -70,7 +71,6 @@ def search_items(id, name, location, amount):
     stat = text(
         "SELECT * FROM inventory where (id= :id or :id = '') and (name=:name or :name = '') and (location=:location or "
         ":location = '') and (amount=:amount or :amount = '')")
-
     try:
         searched_items = db.engine.execute(stat,
                                            {'id': id, 'name': name, 'location': location, 'amount': amount}).fetchall()

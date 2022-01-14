@@ -1,7 +1,7 @@
 from flask import render_template, request, Blueprint
 
 from inventory_app import db
-from inventory_app.models import Inventory
+from inventory_app.models.models import Inventory
 
 main = Blueprint('main', __name__)
 
