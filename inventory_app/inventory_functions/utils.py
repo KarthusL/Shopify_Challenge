@@ -1,3 +1,5 @@
+from random import randrange
+
 from flask import flash
 from sqlalchemy import func
 
@@ -17,9 +19,12 @@ def create_sample_data():
         index = 0
     while True:
         index += 1
-        item = Inventory(index, 'Macbook', 'NY', 1000)
+        item = Inventory(index, 'Macbook', 'NY', randrange(100000))
         db.session.add(item)
 
         if index % 5 == 0:
             break
     db.session.commit()
+
+
+
