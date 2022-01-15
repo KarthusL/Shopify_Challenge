@@ -70,7 +70,7 @@ This website has five functions.
 
 ## Getting Started
 
-Here are steps to set up the project.
+Here are steps to set up the project. You can use Python IDEs such as Pycharm or editors such as Sublime to run the project.
 
 ### Prerequisites
 
