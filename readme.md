@@ -155,7 +155,7 @@ Note: Item names are from a game named [Dyson Sphere Program](https://en.wikiped
 - [ ] Add Pagination
 - [ ] Add background to make it more like a Interstellar Logistics System
 - [ ] Deploy the page using AWS EC2 and Linux Environment
-- [ ] Ability to send a certain amount of items from a star to another (e.g. send from Earth to Mars and items are received in Mars from Earth).
+- [ ] Ability to send a certain amount of items from a star to another (e.g. send from Earth to Mars and items are received in Mars from Earth)
 - [ ] Multi-language Support
     - [ ] Chinese
     - [ ] Japanese
