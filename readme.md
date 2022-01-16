@@ -171,7 +171,7 @@ Note: Item names are from a game named [Dyson Sphere Program](https://en.wikiped
 
 ## Contact
 
-Yifu Liu - [@personal_webpage](http://www.yifu-liu.com) - yl896@cornell.edu
+Yifu Liu - Please also view my [@personal_webpage](http://www.yifu-liu.com) - yl896@cornell.edu
 
 Project Link: [https://github.com/KarthusL/Shopify_Challenge](https://github.com/KarthusL/Shopify_Challenge)
 
