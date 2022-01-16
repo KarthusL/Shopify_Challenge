@@ -36,7 +36,7 @@
 
 ### This project is for Shopify Challenge Summer Internship 2022
 
-This website has five functions.
+This website has 6 functions.
 
 
   <summary>Table of Contents</summary>
