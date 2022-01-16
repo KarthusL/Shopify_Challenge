@@ -130,7 +130,7 @@ For each function:
         <ul>
             Delete same type of items is supported. For example, search "Coal" and click the checkbox on the left side of column name "ID" to delete all items with name "Coal". 
         </ul>
-    <li>View a list of themes</li>
+    <li>View a list of items</li>
         <ul>
             Show all items in the database.
         </ul>
