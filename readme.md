@@ -39,7 +39,7 @@
 This website has 6 functions.
 
 
-  <summary>Table of Contents</summary>
+  <summary>Functions: </summary>
   <ol>
     <li>Create inventory items</li>
     <li>Edit items</li>
