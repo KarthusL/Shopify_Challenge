@@ -98,7 +98,7 @@ Below is an example of how you can install and set up this project.
    ```
 3. Run run.py
    ```js
-   python run.py
+   python3 run.py
    ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
