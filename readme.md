@@ -94,11 +94,11 @@ Below is an example of how you can install and set up this project.
    ```
 2. Install packages under the Shopify_Challenge folder
    ```sh
-   pip install -r requirement.txt
+   pip3 install -r requirement.txt
    ```
 3. Run run.py
    ```js
-   python3 run.py
+   python run.py
    ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
