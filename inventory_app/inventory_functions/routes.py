@@ -16,6 +16,7 @@ def add():
     return redirect('/')
 
 
+
 # helper function for add()
 def add_data(id, name, location, amount):
     if None in (id, name, location, amount):
