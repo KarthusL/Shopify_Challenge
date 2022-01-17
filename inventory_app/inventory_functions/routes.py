@@ -16,12 +16,16 @@ def add():
     return redirect('/')
 
 
-
 # helper function for add()
 def add_data(id, name, location, amount):
     if None in (id, name, location, amount):
         flash('All information is needed to create an item')
         return redirect('/')
+
+    if type(id) != int or type(name) != str or type(location) != str or type(amount) != int:
+        flash('The types of input data may not be correct.')
+        return redirect('/')
+
     try:
         inventory = Inventory(id, name, location, amount)
         db.session.add(inventory)
