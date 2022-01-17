@@ -81,6 +81,11 @@ def search_items(id, name, location, amount):
     except:
         flash('There was a problem when fetching the result')
         redirect('/')
+
+    if not searched_items:
+        flash('No data based on your search')
+        redirect('/')
+
     return searched_items
 
 
