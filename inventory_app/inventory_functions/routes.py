@@ -18,7 +18,7 @@ def add():
 
 # helper function for add()
 def add_data(id, name, location, amount):
-    if not all((id, name, location, amount)):
+    if not all(id, name, location, amount):
         flash('All information is needed to create an item')
         return redirect('/')
 
